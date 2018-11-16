@@ -20,10 +20,10 @@ function StartEditEvent(anno_id,event) {
   }
   if (video_mode) oVP.Pause();
   if(event) event.stopPropagation();
-  if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, anno_id, 'username')))) && (!IsUserAdmin()) && (anno_id<num_orig_anno) && !action_RenameExistingObjects && !action_ModifyControlExistingObjects && !action_DeleteExistingObjects) {
+  /*if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, anno_id, 'username')))) && (!IsUserAdmin()) && (anno_id<num_orig_anno) && !action_RenameExistingObjects && !action_ModifyControlExistingObjects && !action_DeleteExistingObjects) {
     PermissionError();
     return;
-  }
+  }*/
   active_canvas = SELECTED_CANVAS;
   edit_popup_open = 1;
   
@@ -152,7 +152,7 @@ function AdjustPolygonButton() {
 
   // object name
   old_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
-  if(document.getElementById('objEnter')) new_name = RemoveSpecialChars(document.getElementById('objEnter').value);
+  if(document.getElementById('objSelect')) new_name = RemoveSpecialChars(document.getElementById('objSelect').value);
   else new_name = RemoveSpecialChars(adjust_objEnter);
   
   var re = /[a-zA-Z0-9]/;
@@ -160,11 +160,11 @@ function AdjustPolygonButton() {
     alert('Please enter an object name');
     return;
   }
-  adjust_objEnter = document.getElementById('objEnter').value;
-  if (use_attributes){
+  adjust_objEnter = document.getElementById('objSelect').value;
+  /*if (use_attributes){
 	  adjust_attributes = document.getElementById('attributes').value;
 	  adjust_occluded = document.getElementById('occluded').value;
-  }
+  }*/
   // Close the edit popup bubble:
   CloseEditPopup();
 

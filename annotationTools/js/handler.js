@@ -63,16 +63,31 @@ function handler() {
       
       // object name
       old_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
-      if(document.getElementById('objEnter')) new_name = RemoveSpecialChars(document.getElementById('objEnter').value);
+      if(document.getElementById('objSelect')) new_name = RemoveSpecialChars(document.getElementById('objSelect').value);
       else new_name = RemoveSpecialChars(adjust_objEnter);
-      
+
+      old_type = old_name.substr(0, old_name.length - 1);
+      if (old_type == new_name) {
+          new_name = old_name;
+      } else {
+          if (new_name == "tc") {
+              ar_count -= 1;
+              new_name += tc_count;
+              tc_count += 1;
+          } else if (new_name == "ar") {
+              tc_count -= 1;
+              new_name += ar_count;
+              ar_count += 1;
+          }
+      }
+
       var re = /[a-zA-Z0-9]/;
       if(!re.test(new_name)) {
 	alert('Please enter an object name');
 	return;
       }
       
-      if (use_attributes) {
+      /*if (use_attributes) {
       	// occlusion field
       	if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
       	else new_occluded = RemoveSpecialChars(adjust_occluded);
@@ -80,7 +95,7 @@ function handler() {
       	// attributes field
       	if(document.getElementById('attributes')) new_attributes = RemoveSpecialChars(document.getElementById('attributes').value);
       	else new_attributes = RemoveSpecialChars(adjust_attributes);
-      }
+      }*/
       
       StopEditEvent();
       
@@ -225,47 +240,57 @@ function handler() {
       var nn;
       var anno;
       
-      // If the attributes are active, read the fields.
-      if (use_attributes) {
+    // If the attributes are active, read the fields.
+    if (use_attributes) {
 	// get attributes (is the field exists)
-	if(document.getElementById('attributes')) new_attributes = RemoveSpecialChars(document.getElementById('attributes').value);
-	else new_attributes = "";
+	  if(document.getElementById('attributes')) new_attributes = RemoveSpecialChars(document.getElementById('attributes').value);
+	  else new_attributes = "";
 	
 	// get occlusion field (is the field exists)
-	if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
-	else new_occluded = "";
-      }
+	  if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
+	  else new_occluded = "";
+    }
       
-      if((object_choices!='...') && (object_choices.length==1)) {
-	nn = RemoveSpecialChars(object_choices[0]);
+    if((object_choices!='...') && (object_choices.length==1)) {
+	//nn = RemoveSpecialChars(object_choices[0]);
+      nn = "hello!";
+      var re = /[a-zA-Z0-9]/;
+      if(!re.test(nn)) {
+        alert('Please enter an object name');
+        return;
+      }
+	  active_canvas = REST_CANVAS;
+	
+	  // Move draw canvas to the back:
+	  document.getElementById('draw_canvas').style.zIndex = -2;
+	  document.getElementById('draw_canvas_div').style.zIndex = -2;
+
+	  // Remove polygon from the draw canvas:
+	  var anno = null;
+	  if(draw_anno) {
+	    draw_anno.DeletePolygon();
+	    anno = draw_anno;
+	    draw_anno = null;
+	  }
+    } else {
+	  //nn = RemoveSpecialChars(document.getElementById('objEnter').value);
+      nn = RemoveSpecialChars(document.getElementById('objSelect').value);
+
+      if (nn == "tc") {
+          nn += tc_count;
+          tc_count += 1;
+      } else if (nn == "ar") {
+          nn += ar_count;
+          ar_count += 1;
+      }
+
 	  var re = /[a-zA-Z0-9]/;
 	  if(!re.test(nn)) {
-	    alert('Please enter an object name');
-	    return;
+	     alert('Please enter an object name');
+	     return;
 	  }
-	active_canvas = REST_CANVAS;
-	
-	// Move draw canvas to the back:
-	document.getElementById('draw_canvas').style.zIndex = -2;
-	document.getElementById('draw_canvas_div').style.zIndex = -2;
-	
-	// Remove polygon from the draw canvas:
-	var anno = null;
-	if(draw_anno) {
-	  draw_anno.DeletePolygon();
-	  anno = draw_anno;
-	  draw_anno = null;
-	}
-      }
-      else {
-	nn = RemoveSpecialChars(document.getElementById('objEnter').value);
-	var re = /[a-zA-Z0-9]/;
-	if(!re.test(nn)) {
-	   alert('Please enter an object name');
-	   return;
-	}
-	anno = this.QueryToRest();
-      }
+	  anno = this.QueryToRest();
+    }
       
       
       // Update old and new object names for logfile:
@@ -339,6 +364,7 @@ function handler() {
 	}
 	html_str += '</polygon>';
 	html_str += '</object>';
+	//alert("this is attr" + $(LM_xml).find("annotation").);
 	$(LM_xml).children("annotation").append($(html_str));
       }
       

@@ -199,21 +199,22 @@ function CloseEditPopup() {
 function GetPopupFormDraw(scribble_form) {
   wait_for_input = 1;
   part_bubble = false;
-  html_str = "<b>Enter object name</b><br />";
+  html_str = "<b>Select event type</b><br />";
   if (add_parts_to != null){
     html_str = "<b>Enter part name</b><br />";
     part_bubble = true;
   }
-  html_str += HTMLobjectBox("");
+  //html_str += HTMLobjectBox("");
+  html_str += HTMLdropdown();
   
-  if(use_attributes) {
+  /*if(use_attributes) {
     html_str += HTMLoccludedBox("");
     html_str += "<b>Enter attributes</b><br />";
     html_str += HTMLattributesBox("");
   }
   if(use_parts) {
     html_str += HTMLpartsBox("");
-  }
+  }*/
   html_str += "<br />";
   
   // Done button:
@@ -226,8 +227,8 @@ function GetPopupFormDraw(scribble_form) {
   if (!scribble_form) if (!bounding_box) html_str += '<input type="button" value="Undo close" title="Press this button if you accidentally closed the polygon. You can continue adding control points." onclick="UndoCloseButton();" tabindex="0" />';
   else if (scribble_form) html_str += '<input type="button" value="Edit Scribble" title="Press this button if to keep adding scribbles." onclick="KeepEditingScribbles();" tabindex="0" />';
   // Add parts/Stop adding parts
-  if (add_parts_to == null) html_str += '<input type="button" value="Add parts" title="Press this button if you want to start adding parts" onclick="main_handler.StartAddParts();" tabindex="0" />';
-  else html_str += '<input type="button" value="Stop parts" title="Press this button if you want to stop adding parts" onclick="main_handler.StopAddParts();" tabindex="0" />';
+  //if (add_parts_to == null) html_str += '<input type="button" value="Add parts" title="Press this button if you want to start adding parts" onclick="main_handler.StartAddParts();" tabindex="0" />';
+  //else html_str += '<input type="button" value="Stop parts" title="Press this button if you want to stop adding parts" onclick="main_handler.StopAddParts();" tabindex="0" />';
     
   return html_str;
 }
@@ -237,15 +238,17 @@ function GetPopupFormEdit(anno) {
   edit_popup_open =  1;
   part_bubble = false;
   var obj_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
+  alert(obj_name);
   if(obj_name=="") obj_name = "?";
   var attributes = LMgetObjectField(LM_xml,anno.anno_id,'attributes');
   var occluded = LMgetObjectField(LM_xml,anno.anno_id,'occluded');
   var parts = LMgetObjectField(LM_xml, anno.anno_id, 'parts');
   
-  html_str = "<b>Enter object name</b><br />"; 
-  html_str += HTMLobjectBox(obj_name);
+  html_str = "<b>Select event type</b><br />";
+  html_str += HTMLdropdown();
+  //html_str += HTMLobjectBox(obj_name);
   
-  if(use_attributes) {
+  /*if(use_attributes) {
     html_str += HTMLoccludedBox(occluded);
     html_str += "<b>Enter attributes</b><br />";
     html_str += HTMLattributesBox(attributes);
@@ -253,9 +256,9 @@ function GetPopupFormEdit(anno) {
   
   if(use_parts) {
     html_str += HTMLpartsBox(parts);
-  }
+  }*/
   
-  html_str += "<br />";
+  //html_str += "<br />";
   
   // Done button:
   if (video_mode) html_str += '<input type="button" value="Done" title="Press this button when you are done editing." onclick="main_media.SubmitEditObject();" tabindex="0" />';
@@ -287,6 +290,18 @@ function GetPopupFormEdit(anno) {
 // ****************************
 // Simple building blocks:
 // ****************************
+
+function HTMLdropdown() {
+    var html_str="";
+    html_str += '<select name="dropDown" id="objSelect">';
+    html_str += '<option value="tc"> Tropical Cyclone (TC) </option>';
+    html_str += '<option value="ar"> Atmospheric River (AR) </option>';
+    html_str += '</select>'
+    html_str += '<br />';
+
+    return html_str;
+
+}
 
 // Shows the box to enter the object name
 function HTMLobjectBox(obj_name) {

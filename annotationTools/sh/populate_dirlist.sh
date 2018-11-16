@@ -46,7 +46,7 @@ else
 fi
 
 # Populate dirlist:
-find $ImageDir | while read i; do
+find $ImageDir | sort -R | while read i; do
     if [[ $i =~ ^.*\.jpg$ ]]; then
 #	echo $i
 		dname=$(dirname $i | sed -e s=$HOMEIMAGES/==);

@@ -41,6 +41,13 @@ $fname =~ tr/\-0-9A-Z_a-z//cd;
 
 $folder =~ tr/\-0-9A-Z_a-z\///cd;
 ##############################
+# Get session ID information:
+($sessionID, $junk) = split("</session_id>",$stdin);
+($junk, $sessionID) = split("<session_id>",$sessionID);
+
+$sessionID =~ tr/\0-9A-Za-z//cd;
+
+##############################
 # Get private data:
 ($global_count,$username,$edited,$old_name,$new_name,$modifiedControlPoints, $video_mode) = &GetPrivateData($stdin);
 ($left_side,$stdin) = split("<private>",$stdin);
@@ -112,7 +119,8 @@ open(FP,">$tmpPath/$folder/$fname.xml");
 print FP $stdin;
 close(FP);
 
-system("cp $tmpPath/$folder/$fname.xml $path/$folder/$fname.xml");
+$new_fname = $fname . $sessionID;
+system("cp $tmpPath/$folder/$fname.xml $path/$folder/$new_fname.xml");
 
 ##############################
 # Get object name information:

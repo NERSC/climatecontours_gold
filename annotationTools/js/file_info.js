@@ -358,6 +358,19 @@ function file_info() {
             this.dir_name = im_req.responseXML.getElementsByTagName("dir")[0].firstChild.nodeValue;
             this.im_name = im_req.responseXML.getElementsByTagName("file")[0].firstChild.nodeValue;
 			imgName = this.im_name;
+			//reset counters for events
+            /*$xml = $(im_req.responseXML);
+            if ($xml.find("tc_count").length > 0) {
+                tc_count = $xml.find("tc_count").text();
+                ar_count = $xml.find("ar_count").text();
+            } else {
+                tc_count = 0;
+                ar_count = 0;
+            }
+            console.log("tc_count: " + tc_count);
+            console.log("ar_count: " + ar_count); */
+            tc_count = 0;
+            ar_count = 0;
         }
         else {
             alert('Fatal: there are problems with fetch_image.cgi');

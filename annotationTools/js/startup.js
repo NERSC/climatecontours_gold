@@ -100,6 +100,10 @@ function LoadAnnotationSuccess(xml) {
 
   // Set global variable:
   LM_xml = xml;
+  if ($(LM_xml).find("tc_count").length > 0) {
+      tc_count = parseInt($(LM_xml).find("tc_count").text());
+      ar_count = parseInt($(LM_xml).find("ar_count").text());
+  }
 
   // Set AllAnnotations array:
   SetAllAnnotationsArray();

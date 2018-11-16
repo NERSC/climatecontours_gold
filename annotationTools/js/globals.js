@@ -78,6 +78,17 @@ var view_Deleted = 0;
 // Flag for right-hand object list:
 var view_ObjList = true;
 
+// ClimateNet event variables:
+var tc_count = 0;
+var ar_count = 0;
+
+//Session ID to track:
+var session_id_array = new Uint32Array(1);
+window.crypto.getRandomValues(session_id_array);
+sessionStorage.session_id = session_id_array[0];
+//var session_id = session_id_array[0];
+
+
 // Mechanical Turk variables:
 var LMbaseurl = 'http://' + window.location.host + window.location.pathname;
 var MThelpPage = 'annotationTools/html/mt_instructions.html';
