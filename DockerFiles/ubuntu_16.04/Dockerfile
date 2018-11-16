@@ -29,7 +29,7 @@ COPY apache2.conf /etc/apache2/apache2.conf
 #Clone LabelMe,move it and make
 RUN git clone https://github.com/kyang1337/LabelMeAnnotationTool.git
 RUN mv ./LabelMeAnnotationTool/ /var/www/html/LabelMeAnnotationTool/
-RUN cd /var/www/html/LabelMeAnnotationTool/ && make
+RUN cd /var/www/html/LabelMeAnnotationTool/ && git pull origin master && make
 RUN chown -R www-data:www-data /var/www/html
 
 # port binding
