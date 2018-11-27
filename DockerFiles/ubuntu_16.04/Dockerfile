@@ -32,6 +32,7 @@ RUN mv ./LabelMeAnnotationTool/ /var/www/html/LabelMeAnnotationTool/
 RUN cd /var/www/html/LabelMeAnnotationTool/ && git pull origin master && make
 RUN chown -R www-data:www-data /var/www/html
 
+RUN cd /var/www/html/LabelMeAnnotationTool/annotationTools/sh/ && ./populate_dirlist.sh
 # port binding
 EXPOSE 80
 
