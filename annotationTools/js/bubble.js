@@ -238,7 +238,6 @@ function GetPopupFormEdit(anno) {
   edit_popup_open =  1;
   part_bubble = false;
   var obj_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
-  alert(obj_name);
   if(obj_name=="") obj_name = "?";
   var attributes = LMgetObjectField(LM_xml,anno.anno_id,'attributes');
   var occluded = LMgetObjectField(LM_xml,anno.anno_id,'occluded');
