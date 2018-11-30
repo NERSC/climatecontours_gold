@@ -205,8 +205,12 @@ function GetPopupFormDraw(scribble_form) {
     part_bubble = true;
   }
   //html_str += HTMLobjectBox("");
-  html_str += HTMLdropdown();
-  
+  if (replace_delete) {
+    html_str += HTMLreplaceDelete();
+  } else {
+    html_str += HTMLdropdown();
+  }
+
   /*if(use_attributes) {
     html_str += HTMLoccludedBox("");
     html_str += "<b>Enter attributes</b><br />";
@@ -215,7 +219,7 @@ function GetPopupFormDraw(scribble_form) {
   if(use_parts) {
     html_str += HTMLpartsBox("");
   }*/
-  html_str += "<br />";
+  //html_str += "<br />";
   
   // Done button:
   html_str += '<input type="button" value="Done" title="Press this button after you have provided all the information you want about the object." onclick="main_handler.SubmitQuery();" tabindex="0" />';
@@ -299,7 +303,16 @@ function HTMLdropdown() {
     html_str += '<br />';
 
     return html_str;
+}
 
+function HTMLreplaceDelete() {
+    var html_str="";
+    html_str += '<select name="dropDown" id="objSelect">';
+    html_str += '<option value="tc">' + deleted_object_name + '</option>';
+    html_str += '</select>';
+    html_str += '<br />';
+
+    return html_str;
 }
 
 // Shows the box to enter the object name

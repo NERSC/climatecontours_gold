@@ -70,6 +70,10 @@ function WriteLogMsg(msg) {
 // This function gets called when the user clicks on the "Next image" button.
 function ShowPrevImage() {
   if(wait_for_input) return WaitForInput();
+  if(replace_delete) {
+    alert("Please replace the deleted polygon before making further changes.")
+    return;
+  }
   if(draw_anno) {
     alert("Need to close current polygon first.");
     return;
@@ -88,6 +92,10 @@ function ShowPrevImage() {
 }
 function ShowNextImage() {
   if(wait_for_input) return WaitForInput();
+  if(replace_delete) {
+    alert("Please replace the deleted polygon before making further changes.")
+    return;
+  }
   if(draw_anno) {
     alert("Need to close current polygon first.");
     return;

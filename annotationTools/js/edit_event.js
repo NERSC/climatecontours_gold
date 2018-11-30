@@ -11,7 +11,7 @@ var adjust_event = null;
 
 */
 function StartEditEvent(anno_id,event) {
-  
+
   console.log('LabelMe: Starting edit event...');
   
   if (add_parts_to != null){
@@ -24,6 +24,10 @@ function StartEditEvent(anno_id,event) {
     PermissionError();
     return;
   }*/
+  if (replace_delete) {
+      alert("Please replace the deleted polygon before making further changes.");
+      return;
+  }
   active_canvas = SELECTED_CANVAS;
   edit_popup_open = 1;
   

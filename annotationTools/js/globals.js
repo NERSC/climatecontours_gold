@@ -56,6 +56,10 @@ var bbox_mode = true;
 var autocomplete_mode = false;
 
 
+//Support serialized deletions
+var replace_delete = 0;
+var deleted_object_name;
+
 var wait_for_input;
 var edit_popup_open = 0;
 var num_orig_anno;

@@ -156,8 +156,10 @@ function handler() {
         // Remove all the part dependencies for the deleted object
         removeAllParts(idx);
         
-        // Write XML to server:
-        WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
+        // Delay writing xml to server, instead write when user replaces deleted polygon
+        deleted_object_name = old_name;
+        replace_delete = 1;
+        //WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
 
 	// Refresh object list:
         if(view_ObjList) RenderObjectList();
@@ -246,7 +248,7 @@ function handler() {
 	  if(document.getElementById('attributes')) new_attributes = RemoveSpecialChars(document.getElementById('attributes').value);
 	  else new_attributes = "";
 	
-	// get occlusion field (is the field exists)
+	// get occlusion field (if the field exists)
 	  if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
 	  else new_occluded = "";
     }
@@ -276,12 +278,17 @@ function handler() {
 	  //nn = RemoveSpecialChars(document.getElementById('objEnter').value);
       nn = RemoveSpecialChars(document.getElementById('objSelect').value);
 
-      if (nn == "tc") {
-          nn += tc_count;
-          tc_count += 1;
-      } else if (nn == "ar") {
-          nn += ar_count;
-          ar_count += 1;
+      if (replace_delete) {
+          nn = document.getElementById('objSelect').textContent;
+          replace_delete = 0;
+      } else {
+          if (nn == "tc") {
+              nn += tc_count;
+              tc_count += 1;
+          } else if (nn == "ar") {
+              nn += ar_count;
+              ar_count += 1;
+          }
       }
 
 	  var re = /[a-zA-Z0-9]/;
