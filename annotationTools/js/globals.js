@@ -56,9 +56,18 @@ var bbox_mode = true;
 var autocomplete_mode = false;
 
 
-//Support serialized deletions
+// Support serialized deletions
 var replace_delete = 0;
 var deleted_object_name;
+
+// Disable editing type for pregenerated events
+var pregenerated = 0;
+
+/* TODO: Implement this with a heap or other structure for efficiency
+   Correct numbering for editing events - currently, this only ensures
+   that the numbering is unique. */
+var tc_array = [];
+var ar_array = [];
 
 var wait_for_input;
 var edit_popup_open = 0;

@@ -371,6 +371,8 @@ function file_info() {
             console.log("ar_count: " + ar_count); */
             tc_count = 0;
             ar_count = 0;
+            tc_array = [];
+            ar_array = [];
         }
         else {
             alert('Fatal: there are problems with fetch_image.cgi');

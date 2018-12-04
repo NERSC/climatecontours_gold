@@ -65,19 +65,22 @@ function handler() {
       old_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
       if(document.getElementById('objSelect')) new_name = RemoveSpecialChars(document.getElementById('objSelect').value);
       else new_name = RemoveSpecialChars(adjust_objEnter);
-
       old_type = old_name.substr(0, old_name.length - 1);
+
       if (old_type == new_name) {
           new_name = old_name;
       } else {
+          //switching from AR to TC
           if (new_name == "tc") {
-              ar_count -= 1;
-              new_name += tc_count;
+              ar_array.push(old_name.substring(old_name.length - 1, old_name.length));
+              new_name = incrementEvent(new_name, tc_array, tc_count);
               tc_count += 1;
+              ar_count -= 1;
           } else if (new_name == "ar") {
-              tc_count -= 1;
-              new_name += ar_count;
+              tc_array.push(old_name.substring(old_name.length - 1, old_name.length));
+              new_name = incrementEvent(new_name, ar_array, ar_count);
               ar_count += 1;
+              tc_count -= 1;
           }
       }
 
@@ -133,9 +136,13 @@ function handler() {
     this.EditBubbleDeleteButton = function () {
         var idx = select_anno.GetAnnoID();
 
-        if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, idx, 'username')))) && (!IsUserAdmin()) && (idx<num_orig_anno) && !action_DeleteExistingObjects) {
+        /*if((IsUserAnonymous() || (!IsCreator(LMgetObjectField(LM_xml, idx, 'username')))) && (!IsUserAdmin()) && (idx<num_orig_anno) && !action_DeleteExistingObjects) {
             alert('You do not have permission to delete this polygon');
             return;
+        }*/
+        var label_creator = LMgetObjectField(LM_xml, idx, 'username');
+        if (label_creator == "pregenerated") {
+            pregenerated = 1;
         }
         
         if(idx>=num_orig_anno) {
@@ -283,10 +290,10 @@ function handler() {
           replace_delete = 0;
       } else {
           if (nn == "tc") {
-              nn += tc_count;
+              nn = incrementEvent(nn, tc_array, tc_count);
               tc_count += 1;
           } else if (nn == "ar") {
-              nn += ar_count;
+              nn = incrementEvent(nn, ar_array, ar_count);
               ar_count += 1;
           }
       }
@@ -362,7 +369,12 @@ function handler() {
       }
       else {
 	html_str += '<polygon>';
-	html_str += '<username>' + username + '</username>';
+	if (pregenerated) {
+	    html_str += '<username>' + "pregenerated" + '</username>';
+	    pregenerated = 0;
+    } else {
+        html_str += '<username>' + username + '</username>';
+    }
 	for(var jj=0; jj < draw_x.length; jj++) {
 	  html_str += '<pt>';
 	  html_str += '<x>' + draw_x[jj] + '</x>';

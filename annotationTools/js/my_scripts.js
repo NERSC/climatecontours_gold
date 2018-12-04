@@ -354,3 +354,11 @@ function GetXMLFile() {
   }
 }
 
+function incrementEvent(name, arr, counter) {
+  if (arr.length > 0) {
+    return name + arr.pop();
+  } else{
+    return name + counter;
+  }
+}
+

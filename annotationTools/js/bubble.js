@@ -248,7 +248,11 @@ function GetPopupFormEdit(anno) {
   var parts = LMgetObjectField(LM_xml, anno.anno_id, 'parts');
   
   html_str = "<b>Select event type</b><br />";
-  html_str += HTMLdropdown();
+  if (LMgetObjectField(LM_xml, anno.anno_id, 'username') == 'pregenerated') {
+    html_str += HTMLpg_dropdown(obj_name);
+  } else {
+    html_str += HTMLdropdown();
+  }
   //html_str += HTMLobjectBox(obj_name);
   
   /*if(use_attributes) {
@@ -294,6 +298,17 @@ function GetPopupFormEdit(anno) {
 // Simple building blocks:
 // ****************************
 
+function HTMLpg_dropdown(objName) {
+  var html_str="";
+  html_str += '<select name="dropDown" id="objSelect">';
+  html_str += '<option value="' + objName.substring(0, objName.length - 1) + '">' + objName + '</option>';
+  html_str += '</select>';
+  html_str += '<br />';
+
+  return html_str;
+
+}
+
 function HTMLdropdown() {
     var html_str="";
     html_str += '<select name="dropDown" id="objSelect">';
@@ -308,7 +323,8 @@ function HTMLdropdown() {
 function HTMLreplaceDelete() {
     var html_str="";
     html_str += '<select name="dropDown" id="objSelect">';
-    html_str += '<option value="tc">' + deleted_object_name + '</option>';
+    html_str += '<option value="' + deleted_object_name.substring(0, deleted_object_name.length - 1) + '">'
+        + deleted_object_name + '</option>';
     html_str += '</select>';
     html_str += '<br />';
 
