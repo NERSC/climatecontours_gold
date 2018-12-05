@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use lib '.';
 require 'globalvariables.pl';
 require 'logfile_helper.pl';
 

@@ -2,6 +2,8 @@
 require 'globalvariables.pl';
 require 'logfile_helper.pl';
 
+use lib '.';
+
 ##############################
 # Get STDIN:
 read(STDIN, $stdin, $ENV{'CONTENT_LENGTH'});

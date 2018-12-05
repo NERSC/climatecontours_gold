@@ -1,5 +1,6 @@
 #!/usr/bin/perl
 
+use lib '.';
 use strict;
 use CGI;
 use CGI::Carp qw ( fatalsToBrowser );
