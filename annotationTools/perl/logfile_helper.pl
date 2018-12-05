@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use lib '.';
 require 'globalvariables.pl';
 
 sub WriteLogfile {
