@@ -105,14 +105,18 @@ $tot_del_after = scalar(@del_split)-1;
 
 ##############################
 # Write to annotation XML file:
+$save_path = $LM_HOME . "submittedAnnotations";
+unless(-d "$save_path") {
+    mkdir "$save_path" or die;
+}
 @all_folders = split("/",$folder);
 $accum_path = "";
 foreach $i (@all_folders) {
     unless(-d "$tmpPath/$accum_path$i") {
 	mkdir "$tmpPath/$accum_path$i" or die;
     }
-    unless(-d "$path/$accum_path$i") {
-	mkdir "$path/$accum_path$i" or die;
+    unless(-d "$save_path/$accum_path$i") {
+	mkdir "$save_path/$accum_path$i" or die;
     }
     $accum_path = "$accum_path$i/";
 }
@@ -121,7 +125,7 @@ print FP $stdin;
 close(FP);
 
 $new_fname = $fname . $sessionID;
-system("cp $tmpPath/$folder/$fname.xml $path/$folder/$new_fname.xml");
+system("cp $tmpPath/$folder/$fname.xml $save_path/$folder/$new_fname.xml");
 
 ##############################
 # Get object name information:
