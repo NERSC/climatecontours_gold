@@ -114,7 +114,8 @@ function handler() {
       // Set fields:
       LMsetObjectField(LM_xml, obj_ndx, "name", new_name);
       LMsetObjectField(LM_xml, obj_ndx, "automatic", "0");
-      
+
+      new_attributes = "";
       // Insert attributes (and create field if it is not there):
       LMsetObjectField(LM_xml, obj_ndx, "attributes", new_attributes);
         
