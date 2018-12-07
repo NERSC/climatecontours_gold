@@ -119,7 +119,7 @@ function handler() {
       // Insert attributes (and create field if it is not there):
       LMsetObjectField(LM_xml, obj_ndx, "attributes", new_attributes);
         
-      
+      new_occluded = "";
       LMsetObjectField(LM_xml, obj_ndx, "occluded", new_occluded);
       
       // Write XML to server:
