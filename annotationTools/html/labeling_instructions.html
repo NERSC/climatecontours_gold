@@ -22,19 +22,38 @@
     </head>
     
     <body bgcolor="#FFFFFF" style="font-family:Arial, Helvetica, Garamond, sans-serif; font-size:10px;">
-        <div id="Layer56" style="position:absolute; left:27px; top:14px; width:222px; height:68px; z-index:102"><img src="../../Icons/LabelMeNEWtight198x55.gif"></div>
+        <div id="Layer56" style="position:absolute; left:27px; top:14px; width:222px; height:68px; z-index:102"><img src="../../Icons/cc_logo_instruct.png"></div>
         <div id="Layer1" style="position:absolute; left:28px; top:102px; width:977px; height:573px; z-index:113; font-size:10px;">
             <table width="100%" border="0">
                 <tr>
-                    <td width="63%"><p><font size="5">Labeling instructions</font></p>
-                        <p>When you enter the tool, an image from the database will be randomly
-                        selected and shown. You can help by annotating as many objects as you
-                        can.
-                        Note that
-                        previously labeled objects may appear on the image.
-                        Please do not label previously labeled objects.
-                        Once you have completed the image, you can view a new image
-                        by pressing the &quot;show next image&quot; button.</p>
+                    <td width="63%"><p><font size="5">Labeling Instructions</font></p>
+                        <p>This tool will help create ground truth labeled data
+                            for the ClimateNet project. The tool is based
+                            on the open-source LabelMe project released by MIT. </br></br>
+
+                            The current goal is to label Atmospheric Rivers (ARs) and
+                            Tropical Cyclones (TCs) on simulated climate output from
+                            the 25km CAM5.1 climate model. As a first step, users will
+                            work with images of the integrated water vapor field and use
+                            the tool to draw n-sided polygons around events of interest
+                            and indicate the type of event (TC or AR) for each polygon.
+                            The number &#39n&#39 is the user&#39s choice, depending on
+                            how complex the shape of the event is and how precise the
+                            user wishes the boundary to be. We recommend O(10) points
+                            for each event. </br></br>
+
+                            When you enter the tool, an image from the database will be
+                            randomly selected and shown. You help create ground truth labels
+                            by drawing polygons around and annotating as many atmospheric
+                            rivers and tropical cyclones as possible. </br></br>
+
+                            Note that images will contain previously labeled events,
+                            which are meant to offer you with examples to get started.
+                            Please modify pre-existing labels or delete and replace them as
+                            you deem fit to accurately indicate the events present in the image.
+                            Once you have completed labeling all events in an image, you can
+                            view a new image by pressing the "show next image" button.
+                        </p>
                         
                         <p>The following steps describe how to label an object:</p>
                         
@@ -42,17 +61,19 @@
                         1. Start by pressing the left
                         mouse button at some point along the boundary of the object.
                         <br />2. Continue clicking along the boundary of the object
-                        to create a polygon.
+                        to create a polygon. Each click generates a new vertex of the
+                            n-sided polygon.
                         <br />3. Once you have finished
                         clicking along the boundary of the object, either click on
                         the first point or press the right mouse button to complete
                         the polygon.
-                        <br />4. A window will now appear asking for the object's
-                        name and attributes.  Enter the object's name and provide any additional information you can and click the "Done" button.
+                        <br />4. A window will now appear asking to choose the event's type.
+                        That is, "Atmospheric River" or "Tropical Cyclone". Please select the
+                        correct event type and click the "Done" button.
                         </p>
                         
                     </td>
-                    <td width="37%" align="center"><img src="../../Icons/boat.jpg" width="270"><br /><b>boat</b></td>
+                    <td width="37%" align="center"><img src="../../Icons/side_image.png" width="600"><br /><b>Example image with labels</b></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -64,24 +85,7 @@
                         
                         <table>
                             <tr>
-                                <td align="center"><img src="../../Icons/mt_example_good3.jpg" height="200" /></td>
-                                <td align="center"><img src="../../Icons/mt_example_good2.jpg" height="200" /></td>
-                                <td align="center"><img src="../../Icons/mt_example_good4.jpg" height="200" /></td>
-                                <td align="center"><img src="../../Icons/mt_example_good5.jpg" height="200" /></td>
-                            </tr>
-                            <tr>
-                                <td align="center">
-                                    <b>building</b>
-                                </td>
-                                <td align="center">
-                                    <b>tree</b>
-                                </td>
-                                <td align="center">
-                                    <b>ship</b>
-                                </td>
-                                <td align="center">
-                                    <b>person</b>
-                                </td>
+                                <td align="center"><img src="../../Icons/good_example.png"/></td>
                             </tr>
                         </table>
                         
@@ -89,23 +93,7 @@
                         
                         <table>
                             <tr>
-                                <td align="center"><img src="../../Icons/mt_example_bad1.jpg" height="200" /></td>
-                                <td align="center"><img src="../../Icons/mt_example_bad2.jpg" height="200" /></td>
-                                <td align="center"><img src="../../Icons/mt_example_bad3.jpg" height="200" /></td>
-                            </tr>
-                            <tr>
-                                <td align="center" width="250">
-                                    The building is not entirely labeled.  Make
-                                    sure to scroll to view the entire object.
-                                </td>
-                                <td align="center" width="250">
-                                    The same cloud is labeled twice.  Please do not label an object that
-                                    has already been labeled.
-                                </td>
-                                <td align="center" width="250">
-                                    There are three people inside this polygon.  Whenever possible,
-                                    please label individual objects and follow closely their boundary.
-                                </td>
+                                <td align="center"><img src="../../Icons/bad_example.png" /></td>
                             </tr>
                         </table>
                         
@@ -115,33 +103,9 @@
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr>
-                    <td><p><font size="5">Entering object information</font></p>
-                        <p>Use common English words. Try to avoid application specific
-                        terms. For instance, avoid doing things such as replacing <em>right arm</em> by <em>ra</em>. This might be useful in the short term but will make difficult reusing the data for other applications in the future. Also, it is always good practice to have data that is itself explanatory.</p>
-                        <p>Also, avoid numbering the objects. It is preferable not to use object names such as <em>car1</em>. The numbering should be avoided if possible. If you need to keep identity information to relate objects across different images you can use the attributes box.</p>
-                        <p><strong>Object naming: </strong>Use common English names for objects.
-                        Use a name that you think other people are likely to use to describe
-                        the same object. You can use several words to describe an
-                        object.
-                        Example object names: sky,
-                        tree, building, road, sidewalk, person, car, chair.	  </p>
-                        <p><strong>Attributes: </strong>Enter a comma separated list of object attributes. You should use this
-                        box to enter information about the object such as the color or any other property that be used
-                        to describe the object and its visual appearance.</p>
-                        <p><strong>Occluded: </strong>Check the corresponding box to indicate if the object is fully visible or not.</p>
-                        <p><strong>Parts: </strong>To indicate that an object is composed of a number of parts, you can drag and drop object names from the right panel (see more details bellow).</p>
-                    </td>
-                    <td><img src="../../Icons/bubble_example.jpg" width="270"></td>
-                </tr>
-                
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
 
                 <tr>
-                    <td><p><font size="5">Labeling guidelines</font></p>
+                    <td><p><font size="5">Labeling Guidelines</font></p>
                         <p>The following are some recomendations for how to provide annotations
                         that are as useful as possible. </p>
                         <p><strong>View the entire image: </strong> Make sure that
@@ -155,13 +119,14 @@
                         The ideal outline should be good enough for somebody to recognize the 
                         object just by seeing the drawn polygon.</p>
                         <p><strong>Labeling occluded objects: </strong>Sometimes objects will 
-                        be only partially visible. This is especially true for regions like roads, 
-                        buildings, etc., which become difficult to label when there are many occlusions. 
+                        be only partially visible. This is especially true for atmospheric rivers.
                         We recommend in these cases to complete the boundary as if they were not 
                         occluded. </p>
+                        <p><strong>Labeling small events: </strong> Sometimes events like TCs will be
+                        small and difficult to label accurately without zooming in. Zoom in on the image
+                        with buttons in the uppermost block to the left of the image. </p>
                         
                     </td>
-                    <td><img src="../../Icons/labeling.jpg" width="270"></td>
                 </tr>
                 
                 <tr> 
@@ -182,15 +147,18 @@
                         down) and move it to a new position. Then click anywhere in the image 
                         to deselect the polygon. This will also save the modified polygon. </p>
                         <p><strong>Delete entire polygon: </strong>Select the polygon. You will
-                        have the option to delete the polygon. You can only edit polygons that
-                        you have entered before. You can not delete polygons by other users.</p>
-                        <p><strong>Adding parts: </strong>To add parts first you need to trace the polygons that correspond to the full object and each of the parts as if they were individual objects. Once they are labeled you can introduce their part-of relationship. The object list in the right side allows indicating with objects are parts of others. If you drag and drop one object tag on top of another, the list will show the dropped object as being part of the other. You can create arbitrary hierarchies with multiple levels with objects composed of parts and the parts composed of more parts and so on.</p>
+                            have the option to delete the polygon.</p>
                     </td><td />
                     <tr> 
                         <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                     </table>
+                <tr>
+                    <td><p><font size="4">Questions? Feedback? Comments?</font></p>
+                        <p><font size="3">Contact us at &lt;kkashinath,prabhat,mudigonda,kevin_yang,aalbert&gt;lbl.gov</font></p>
+                    </td>
+                </tr>
         </div>
         <div id="Layer2" style="position:absolute; left:15px; top:61px; width:987px; height:34px; z-index:114"> 
             <hr size="1">
