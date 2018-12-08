@@ -289,7 +289,7 @@ function GetPopupFormEdit(anno) {
   /*************************************************************/
   
   // Add parts/Stop adding parts
-  if (add_parts_to == null) html_str += '<input type="button" value="Add parts" title="Press this button if you want to start adding parts" onclick="main_handler.StartAddParts();" tabindex="0" />';
+  //if (add_parts_to == null) html_str += '<input type="button" value="Add parts" title="Press this button if you want to start adding parts" onclick="main_handler.StartAddParts();" tabindex="0" />';
   
   return html_str;
 }
