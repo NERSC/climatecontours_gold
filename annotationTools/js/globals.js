@@ -99,7 +99,6 @@ var ar_count = 0;
 var session_id_array = new Uint32Array(1);
 window.crypto.getRandomValues(session_id_array);
 sessionStorage.session_id = session_id_array[0];
-//var session_id = session_id_array[0];
 
 
 // Mechanical Turk variables:

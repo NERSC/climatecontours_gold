@@ -5,6 +5,10 @@ var query_anno = null;
 /** This function is called with the draw event is started.  It can be 
  triggered when the user (1) clicks on the base canvas. */
 function StartDrawEvent(event) {
+  // If the user does not left click, then ignore mouse-down action.
+  var button = event.button;
+  if(button>1) return;
+
   draw_x = new Array();
   draw_y = new Array();
   if(!action_CreatePolygon) return;
@@ -29,11 +33,7 @@ function StartDrawEvent(event) {
   // Get (x,y) mouse click location and button.
   var x = GetEventPosX(event);
   var y = GetEventPosY(event);
-  var button = event.button;
-  
-  // If the user does not left click, then ignore mouse-down action.
-  if(button>1) return;
-  
+
   // Move draw canvas to front:
   $('#draw_canvas').css('z-index','0');
   $('#draw_canvas_div').css('z-index','0');
@@ -88,7 +88,6 @@ canvas. */
 function DrawCanvasMouseDown(event) {
 
   // User right-clicked mouse, so close polygon and return:
-
   if(event.button > 1 && !bounding_box) return DrawCanvasClosePolygon();
 
   // Else, the user left-clicked the mouse.
