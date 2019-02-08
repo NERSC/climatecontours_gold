@@ -38,8 +38,6 @@ if [ "$dirlist" == "" ]; then
     
 fi
 
-gold_dir='gold_standards.txt'
-
 if [ "$folder" == "" ]; then
    ImageDir=$HOMEIMAGES;
    VideoDir=$HOMEVIDEOS;
@@ -55,13 +53,7 @@ find $ImageDir | sort -R | while read i; do
 		dname=$(dirname $i | sed -e s=$HOMEIMAGES/==);
 		iname=$(basename $i);
 		echo "$dname,$iname";
-
-		# if dname == goldstandards, put into a different dirlist
-		if [ "$dname" != "gold_standards" ]; then
-            echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
-        else
-            echo "$dname,$iname" >> $HOMEDIRLIST/$gold_dir;
-        fi
+        echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
     fi
 done
 

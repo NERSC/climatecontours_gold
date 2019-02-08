@@ -44,12 +44,7 @@ if($mode eq "mt") {
     close(FP);
 }
 if($mode eq "i") {
-    my $fname;
-    if($counter % 10 == 0) {
-        $fname = $LM_HOME . "annotationCache/DirLists/gold_standards.txt";
-    } else {
-        $fname = $LM_HOME . "annotationCache/DirLists/$collection.txt";
-    }
+    my $fname = $LM_HOME . "annotationCache/DirLists/$collection.txt";
 
     if(!open(FP,$fname)) {
 	print "Status: 404\n\n";
@@ -63,7 +58,7 @@ if($mode eq "i") {
     
     my $line = int(rand($numlines))+1;
 
-    for(my $i=1; $i < $line; $i++) {
+    for(my $i=1; $i < $counter % ($numlines) + 1; $i++) {
 	my $garbage = readline(FP);
     }
     

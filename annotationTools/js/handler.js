@@ -144,6 +144,7 @@ function handler() {
         var label_creator = LMgetObjectField(LM_xml, idx, 'username');
         if (label_creator == "pregenerated") {
             pregenerated = 1;
+            replace_delete = 1;
         }
         
         if(idx>=num_orig_anno) {
@@ -166,7 +167,6 @@ function handler() {
         
         // Delay writing xml to server, instead write when user replaces deleted polygon
         deleted_object_name = old_name;
-        replace_delete = 1;
         //WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
 
 	// Refresh object list:

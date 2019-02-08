@@ -96,12 +96,14 @@ var tc_count = 0;
 var ar_count = 0;
 
 //Session ID to track:
-var session_id_array = new Uint32Array(1);
-window.crypto.getRandomValues(session_id_array);
-sessionStorage.session_id = session_id_array[0];
+if (localStorage.getItem("session_id") == null) {
+    var session_id_array = new Uint32Array(1);
+    window.crypto.getRandomValues(session_id_array);
+    localStorage.session_id = session_id_array[0];
+}
 
 // Image counter
-var img_counter = 1;
+var img_counter = 0;
 
 // Mechanical Turk variables:
 var LMbaseurl = 'http://' + window.location.host + window.location.pathname;

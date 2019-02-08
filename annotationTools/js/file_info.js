@@ -373,7 +373,6 @@ function file_info() {
             ar_count = 0;
             tc_array = [];
             ar_array = [];
-            img_counter += 1;
         }
         else {
             alert('Fatal: there are problems with fetch_image.cgi');
@@ -431,6 +430,7 @@ function file_info() {
 		    img1.src = path;
 		    img1.onload = function (){
 			console.log('preloaded');
+            img_counter += 1;
 		    }
 		}
 		else {

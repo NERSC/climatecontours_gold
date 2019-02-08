@@ -27,7 +27,7 @@ function WriteXML(url,xml_data,SuccessFunction,ErrorFunction) {
 
     //store the sessionID into the xml
     if ($xml.find("session_id").length == 0) {
-        $xml.find("folder").after("<session_id>" + sessionStorage.session_id + "</session_id>");
+        $xml.find("folder").after("<session_id>" + localStorage.session_id + "</session_id>");
     }
 
     sXmlString = oXmlSerializer.serializeToString(xml_data);
