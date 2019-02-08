@@ -23,9 +23,10 @@
 # folder - Sub-folder under root folder
 
 # Pointer to Images/ and DirLists/ directories:
-HOMEIMAGES='../../Images'
-HOMEDIRLIST='../../annotationCache/DirLists'
-HOMEVIDEOS='../../VLMFrames'
+LM_HOME="/var/www/html/LabelMeAnnotationTool/"
+HOMEIMAGES="${LM_HOME}Images"
+HOMEDIRLIST="${LM_HOME}annotationCache/DirLists"
+HOMEVIDEOS="${LM_HOME}VLMFrame"
 
 # Inputs:
 dirlist=$1
@@ -36,6 +37,8 @@ if [ "$dirlist" == "" ]; then
     dirlist='labelme.txt';
     
 fi
+
+gold_dir='gold_standards.txt'
 
 if [ "$folder" == "" ]; then
    ImageDir=$HOMEIMAGES;
@@ -52,7 +55,13 @@ find $ImageDir | sort -R | while read i; do
 		dname=$(dirname $i | sed -e s=$HOMEIMAGES/==);
 		iname=$(basename $i);
 		echo "$dname,$iname";
-		echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
+
+		# if dname == goldstandards, put into a different dirlist
+		if [ "$dname" != "gold_standards" ]; then
+            echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
+        else
+            echo "$dname,$iname" >> $HOMEDIRLIST/$gold_dir;
+        fi
     fi
 done
 

@@ -100,6 +100,8 @@ var session_id_array = new Uint32Array(1);
 window.crypto.getRandomValues(session_id_array);
 sessionStorage.session_id = session_id_array[0];
 
+// Image counter
+var img_counter = 1;
 
 // Mechanical Turk variables:
 var LMbaseurl = 'http://' + window.location.host + window.location.pathname;

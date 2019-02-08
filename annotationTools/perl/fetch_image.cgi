@@ -14,6 +14,7 @@ my $username = $query->param("username");
 my $collection = $query->param("collection");
 my $folder = $query->param("folder");
 my $image = $query->param("image");
+my $counter = $query->param("counter");
 
 my $im_dir;
 my $im_file;
@@ -43,8 +44,13 @@ if($mode eq "mt") {
     close(FP);
 }
 if($mode eq "i") {
-    my $fname = $LM_HOME . "annotationCache/DirLists/$collection.txt";
-    
+    my $fname;
+    if($counter % 10 == 0) {
+        $fname = $LM_HOME . "annotationCache/DirLists/gold_standards.txt";
+    } else {
+        $fname = $LM_HOME . "annotationCache/DirLists/$collection.txt";
+    }
+
     if(!open(FP,$fname)) {
 	print "Status: 404\n\n";
 	return;
@@ -56,7 +62,7 @@ if($mode eq "i") {
     close(NUMLINES);
     
     my $line = int(rand($numlines))+1;
-    
+
     for(my $i=1; $i < $line; $i++) {
 	my $garbage = readline(FP);
     }
