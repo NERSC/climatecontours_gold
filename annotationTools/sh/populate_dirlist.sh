@@ -23,7 +23,7 @@
 # folder - Sub-folder under root folder
 
 # Pointer to Images/ and DirLists/ directories:
-LM_HOME="/var/www/html/climatecontours_gold
+LM_HOME="/var/www/html/climatecontours_gold"
 HOMEIMAGES="${LM_HOME}Images"
 HOMEDIRLIST="${LM_HOME}annotationCache/DirLists"
 HOMEVIDEOS="${LM_HOME}VLMFrame"
