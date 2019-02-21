@@ -14,8 +14,6 @@ function WriteXML(url,xml_data,SuccessFunction,ErrorFunction) {
     oXmlSerializer =  new XMLSerializer();
 
     $xml = $(xml_data);
-    //old_filename = $xml.find("filename").text();
-    //$xml.find("filename").replaceWith("<filename>" + sessionStorage.session_id + old_filename + "</filename>");
     if ($xml.find("tc_count").length > 0) {
         //we found something
         $xml.find("tc_count").replaceWith("<tc_count>" + tc_count + "</tc_count>");
@@ -23,6 +21,12 @@ function WriteXML(url,xml_data,SuccessFunction,ErrorFunction) {
     } else {
         $xml.find("folder").after("<tc_count>" + tc_count + "</tc_count>");
         $xml.find("tc_count").after("<ar_count>" + ar_count + "</ar_count>");
+    }
+
+    if ($xml.find("imagesize").length == 0) {
+        $xml.find("folder").after("<imagesize></imagesize>");
+        $xml.find("imagesize").append("<nrows>" + main_media.height_orig + "</nrows>");
+        $xml.find("imagesize").append("<ncols>" + main_media.width_orig + "</ncols>");
     }
 
     //store the sessionID into the xml
