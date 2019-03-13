@@ -105,9 +105,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       <button id="xml_url" class="labelBtn" type="button" title="Download XML file">
         <img src="Icons/download_xml.png"  height="30" />
       </button>
-      
+
       <!-- HELP BUTTON -->
-      <button id="help" class="labelBtn" type="button" title="Show help page" onclick="location.href='annotationTools/html/labeling_instructions.html'" >
+      <button id="help" class="labelBtn" type="button" title="Show help page" onclick="window.open('annotationTools/html/labeling_instructions.html', target='_blank')" >
         <img src="Icons/help_new.png"  height="30" />
       </button>
       
@@ -119,16 +119,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <img src="Icons/next_2.png" height="30" />
       </button>
     </div>
-    <div id="label_buttons_contrast">
 
-      <button id="lessContrast" class="labelBtn" type="button" title="Decrease Brightness">
-        <img src="Icons/morecontrast.png" height="30" />
+    <div id="label_buttons_contrast">
+      <button id="toggleLeft" class="labelBtn" type="button" title="Previous Channel">
+        <img src="Icons/az180deg-arrow.png" height="30" />
       </button>
-      <button id="moreContrast" class="labelBtn" type="button" title="Increase Brightness">
-        <img src="Icons/lesscontrast.png" height="30" />
+      <button id="toggleRight" class="labelBtn" type="button" title="Next Channel">
+        <img src="Icons/az0deg-arrow.png" height="30" />
       </button>
     </div>
-    
+
     <!-- DRAWING BUTTONS -->
     <div id="label_buttons_drawing">
       <div id ="generic_buttons" class="annotatemenu">

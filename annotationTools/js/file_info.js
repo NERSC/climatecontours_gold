@@ -373,6 +373,7 @@ function file_info() {
             ar_count = 0;
             tc_array = [];
             ar_array = [];
+            toggle_counter = 0;
         }
         else {
             alert('Fatal: there are problems with fetch_image.cgi');

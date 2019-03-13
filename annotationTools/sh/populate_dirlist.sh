@@ -46,14 +46,33 @@ else
    VideoDir="$HOMEVIDEOS/$folder";
 fi
 
+# adapted from https://stackoverflow.com/questions/3685970/check-if-a-bash-array-contains-a-value
+containsElement () {
+  local e match="$1"
+  shift
+  for e; do [[ "$e" == "$match" ]] && echo 0 && return 0; done
+  echo 1
+}
+
+# below setting only generates labels for ivt channel
+toggle_arr=("labels_0" "labels_1" "tmq" "tmq_wind" "vor_ps" "vor_ps_wind" "vorticity")
+
+
 # Populate dirlist:
 find $ImageDir | sort -R | while read i; do
     if [[ $i =~ ^.*\.jpg$ ]]; then
 #	echo $i
 		dname=$(dirname $i | sed -e s=$HOMEIMAGES/==);
 		iname=$(basename $i);
-		echo "$dname,$iname";
-        echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
+
+        contains=$(containsElement "$dname" "${toggle_arr[@]}");
+        echo $contains
+		if [[ $contains -ne 0 ]]; then
+
+            echo "$dname,$iname";
+            echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
+
+        fi
     fi
 done
 

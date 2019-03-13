@@ -66,12 +66,21 @@ function WriteLogMsg(msg) {
     }
   }
 }
+function Toggle(num) {
+  if (toggle_counter == 0) {
+    toggle_list[0] = main_media.GetFileInfo().dir_name;
+  }
+  toggle_counter += num;
+  var len = toggle_list.length;
+  main_media.GetFileInfo().dir_name = toggle_list[((toggle_counter % len) + len) % len];
+  ToggleChannel();
+}
 
 // This function gets called when the user clicks on the "Next image" button.
 function ShowPrevImage() {
   if(wait_for_input) return WaitForInput();
   if(replace_delete) {
-    alert("Please replace the deleted polygon before making further changes.")
+    alert("Please replace the deleted polygon before making further changes.");
     return;
   }
   if(draw_anno) {

@@ -105,6 +105,10 @@ if (localStorage.getItem("session_id") == null) {
 // Image counter
 var img_counter = 0;
 
+// Toggle counter
+var toggle_counter = 0;
+var toggle_list = ["placeholder", "tmq", "tmq_wind", "vor_ps", "vor_ps_wind", "vorticity"];
+
 // Mechanical Turk variables:
 var LMbaseurl = 'http://' + window.location.host + window.location.pathname;
 var MThelpPage = 'annotationTools/html/mt_instructions.html';

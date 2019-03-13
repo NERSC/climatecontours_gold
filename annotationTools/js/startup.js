@@ -73,6 +73,19 @@ function StartupLabelMe() {
     $('html').append('<body><p><img src="Icons/LabelMe.gif" /></p><br /><p>Sorry!  This page only works with Mozilla Firefox, Chrome, and Internet Explorer.  We may support other browsers in the future.</p><p><a href="http://www.mozilla.org">Download Mozilla Firefox?</a></p></body>');
   }
 }
+
+function ToggleChannel(){
+
+      function toggle_onload_helper() {
+	      // Set the image dimensions:
+	      main_media.SetImageDimensions();
+	      main_media.Zoom('fitted');
+          };
+
+      // Get the image:
+      main_media.GetNewImage(toggle_onload_helper);
+}
+
 function LoadNewMedia(){
 	
       main_canvas = new canvas('myCanvas_bg');
@@ -241,6 +254,8 @@ function FinishStartup() {
   $('#xml_url').attr("onclick","javascript:GetXMLFile();");
   $('#prevImage').attr("onclick","javascript:ShowPrevImage()");
   $('#nextImage').attr("onclick","javascript:ShowNextImage()");
+  $('#toggleLeft').attr("onclick", "javascript:Toggle(-1)");
+  $('#toggleRight').attr("onclick", "javascript:Toggle(1)");
   $('#lessContrast').attr("onclick","javascript:main_media.AugmentContrast()");
   $('#moreContrast').attr("onclick","javascript:main_media.ReduceContrast()");
   if (video_mode){
