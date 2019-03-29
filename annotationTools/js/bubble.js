@@ -34,7 +34,7 @@ function CreatePopupBubble(left,top,innerHTML,dom_attach) {
 
   // Close div tag:
   html_str += '</div>';
-  
+
   // Insert bubble into the DOM tree:
   $('#'+dom_attach).append(html_str);
   if (part_bubble) $('#myPopup').css('background-color', 'rgb(255,230,230)')
@@ -210,6 +210,8 @@ function GetPopupFormDraw(scribble_form) {
   } else {
     html_str += HTMLdropdown();
   }
+  html_str += "<b>Select confidence</b><br />";
+  html_str += confidence();
 
   /*if(use_attributes) {
     html_str += HTMLoccludedBox("");
@@ -253,14 +255,17 @@ function GetPopupFormEdit(anno) {
   } else {
     html_str += HTMLdropdown();
   }
+
+  html_str += "<b>Select confidence</b><br />";
+  html_str += confidence();
   //html_str += HTMLobjectBox(obj_name);
-  
+
   /*if(use_attributes) {
     html_str += HTMLoccludedBox(occluded);
     html_str += "<b>Enter attributes</b><br />";
     html_str += HTMLattributesBox(attributes);
   }
-  
+
   if(use_parts) {
     html_str += HTMLpartsBox(parts);
   }*/
@@ -297,6 +302,17 @@ function GetPopupFormEdit(anno) {
 // ****************************
 // Simple building blocks:
 // ****************************
+function confidence() {
+    var html_str="";
+    html_str += '<select name="confidence" id="confidence">';
+    html_str += '<option value="Low"> Low </option>';
+    html_str += '<option value="Medium"> Medium </option>';
+    html_str += '<option value="High"> High </option>';
+    html_str += '</select>';
+    html_str += '<br />';
+
+    return html_str;
+}
 
 function HTMLpg_dropdown(objName) {
   var html_str="";

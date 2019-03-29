@@ -10,7 +10,7 @@
 function LMgetObjectField(xml,ind_object, name, frame) {
 	var obj = $(xml).children("annotation").children("object").eq(ind_object);
 	if (obj.length == 0) return "";
-	if (name == 'name' ||  name == 'attributes' || name == 'occluded'){
+	if (name == 'name' || name == 'confidence' ||  name == 'attributes' || name == 'occluded'){
 		if (!obj.children(name).length > 0) return "";
 		else return obj.children(name).text();
 	}
@@ -117,7 +117,7 @@ function LMnumberOfObjects(xml) {
 */
 function LMsetObjectField(xml, ind_object, name, value){
 	var obj = $(xml).children("annotation").children("object").eq(ind_object);
-	if (name == 'name' || name == 'automatic' || name == 'attributes' || name == 'occluded' || name == 'deleted' || name == 'id'){
+	if (name == 'name' || name == 'confidence' || name == 'automatic' || name == 'attributes' || name == 'occluded' || name == 'deleted' || name == 'id'){
 		if (obj.children(name).length > 0) obj.children(name).text(value);
 		else if (name != 'automatic') obj.append("<"+name+">"+value+"</"+name+">");
 	}

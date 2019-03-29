@@ -145,6 +145,7 @@ function StopEditEvent() {
 var adjust_objEnter = '';
 var adjust_attributes;
 var adjust_occluded;
+var adjust_objConfidence;
 
 /** This function is called when the user clicks 'Adjust Polygon' button */
 function AdjustPolygonButton() {
@@ -155,16 +156,16 @@ function AdjustPolygonButton() {
   var anno = select_anno;
 
   // object name
-  old_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
-  if(document.getElementById('objSelect')) new_name = RemoveSpecialChars(document.getElementById('objSelect').value);
-  else new_name = RemoveSpecialChars(adjust_objEnter);
-  
+  adjust_objEnter = RemoveSpecialChars(document.getElementById('objSelect').value);
   var re = /[a-zA-Z0-9]/;
-  if(!re.test(new_name)) {
+  if(!re.test(adjust_objEnter)) {
     alert('Please enter an object name');
     return;
   }
-  adjust_objEnter = document.getElementById('objSelect').value;
+
+  // object confidence
+  adjust_objConfidence = document.getElementById('confidence').value;
+
   /*if (use_attributes){
 	  adjust_attributes = document.getElementById('attributes').value;
 	  adjust_occluded = document.getElementById('occluded').value;

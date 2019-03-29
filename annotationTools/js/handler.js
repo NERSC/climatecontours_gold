@@ -60,11 +60,18 @@ function handler() {
       } 
       submission_edited = 1;
       var anno = select_anno;
-      
+
+      // There are 2 cases: either the user submits the modified attributes, or adjusts the polygon
+
       // object name
       old_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
-      if(document.getElementById('objSelect')) new_name = RemoveSpecialChars(document.getElementById('objSelect').value);
-      else new_name = RemoveSpecialChars(adjust_objEnter);
+      if(document.getElementById('objSelect')) {
+          // submitted without adjusting
+          new_name = RemoveSpecialChars(document.getElementById('objSelect').value);
+      } else {
+          // adjusted polygon
+          new_name = RemoveSpecialChars(adjust_objEnter);
+      }
       old_type = old_name.substr(0, old_name.length - 1);
 
       if (old_type == new_name) {
@@ -86,10 +93,18 @@ function handler() {
 
       var re = /[a-zA-Z0-9]/;
       if(!re.test(new_name)) {
-	alert('Please enter an object name');
-	return;
+        alert('Please enter an object name');
+        return;
       }
-      
+      // confidence
+      if (document.getElementById('confidence')) {
+          // submitted without adjusting
+          var obj_confidence = document.getElementById('confidence').value;
+      } else {
+          // adjusted polygon
+          var obj_confidence = adjust_objConfidence;
+      }
+
       /*if (use_attributes) {
       	// occlusion field
       	if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
@@ -101,7 +116,7 @@ function handler() {
       }*/
       
       StopEditEvent();
-      
+
       // Insert data to write to logfile:
       if(editedControlPoints) InsertServerLogData('cpts_modified');
       else InsertServerLogData('cpts_not_modified');
@@ -113,6 +128,7 @@ function handler() {
       
       // Set fields:
       LMsetObjectField(LM_xml, obj_ndx, "name", new_name);
+      LMsetObjectField(LM_xml, obj_ndx, "confidence", obj_confidence);
       LMsetObjectField(LM_xml, obj_ndx, "automatic", "0");
 
       new_attributes = "";
@@ -304,6 +320,7 @@ function handler() {
 	     alert('Please enter an object name');
 	     return;
 	  }
+      var obj_confidence = document.getElementById('confidence').value;
 	  anno = this.QueryToRest();
     }
       
@@ -311,16 +328,16 @@ function handler() {
       // Update old and new object names for logfile:
       new_name = nn;
       old_name = nn;
-      
+
       submission_edited = 0;
       global_count++;
       
       // Insert data for server logfile:
       InsertServerLogData('cpts_not_modified');
-      
       // Insert data into XML:
       var html_str = '<object>';
       html_str += '<name>' + new_name + '</name>';
+      html_str += '<confidence>' + obj_confidence + '</confidence>';
       html_str += '<deleted>0</deleted>';
       html_str += '<verified>0</verified>';
       if(use_attributes) {
