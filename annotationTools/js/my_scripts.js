@@ -67,12 +67,41 @@ function WriteLogMsg(msg) {
   }
 }
 function Toggle(num) {
-  if (toggle_counter == 0) {
-    toggle_list[0] = main_media.GetFileInfo().dir_name;
+  if (num == 1) {
+    toggle_counters[0] += 1;
+    let len = 3;
+    let idx = (((toggle_counters[0]-1) % len) + len) % len;
+    main_media.GetFileInfo().dir_name = toggle_list[idx];
+    if (idx == 0) {
+      document.getElementById('my_color_bar').src = "Icons/tmq.png";
+    }
+    else if (idx == 1) {
+      document.getElementById('my_color_bar').src = "Icons/tmq_wind850.png";
+    }
+    else {
+      document.getElementById('my_color_bar').src = "Icons/tmq_wind101.png";
+    }
   }
-  toggle_counter += num;
-  var len = toggle_list.length;
-  main_media.GetFileInfo().dir_name = toggle_list[((toggle_counter % len) + len) % len];
+  else if (num == 2) {
+    toggle_counters[1] += 1;
+    let len = 2;
+    let idx = (((toggle_counters[1]-1) % len) + len) % len + 3;
+    main_media.GetFileInfo().dir_name = toggle_list[idx];
+    if (idx == 3) {
+      document.getElementById('my_color_bar').src = "Icons/ivt.png";
+    }
+    else if (idx == 4) {
+      document.getElementById('my_color_bar').src = "Icons/PSL_vor_ivt.png";
+    }
+  }
+  else if (num == 3) {
+    main_media.GetFileInfo().dir_name = toggle_list[5];
+    document.getElementById('my_color_bar').src = "Icons/vor.png";
+  }
+  else { // if (num == 4)
+    main_media.GetFileInfo().dir_name = toggle_list[6];
+    document.getElementById('my_color_bar').src = "Icons/PSL_vor.png";
+  }
   ToggleChannel();
 }
 

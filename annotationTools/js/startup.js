@@ -103,6 +103,8 @@ function LoadNewMedia(){
 
       // Get the image:
       main_media.GetNewImage(main_media_onload_helper);
+      var c = document.getElementById('imcanvas');
+      $("#my_color_bar").css({top: c.height + 70, left: 30, position:'absolute'});
 }
 /** This function gets called if the annotation has been successfully loaded.
   * @param {string} xml - the xml regarding the current file
@@ -254,8 +256,12 @@ function FinishStartup() {
   $('#xml_url').attr("onclick","javascript:GetXMLFile();");
   $('#prevImage').attr("onclick","javascript:ShowPrevImage()");
   $('#nextImage').attr("onclick","javascript:ShowNextImage()");
-  $('#toggleLeft').attr("onclick", "javascript:Toggle(-1)");
-  $('#toggleRight').attr("onclick", "javascript:Toggle(1)");
+
+  $('#toggletmq').attr("onclick", "javascript:Toggle(1)");
+  $('#toggleivt').attr("onclick", "javascript:Toggle(2)");
+  $('#togglevor').attr("onclick", "javascript:Toggle(3)");
+  $('#togglepsl').attr("onclick", "javascript:Toggle(4)");
+
   $('#lessContrast').attr("onclick","javascript:main_media.AugmentContrast()");
   $('#moreContrast').attr("onclick","javascript:main_media.ReduceContrast()");
   if (video_mode){
