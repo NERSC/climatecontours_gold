@@ -65,7 +65,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </head>
 
 <!-- Start up LabelMe after HTML elements load -->
-<body id="body" style="visibility:hidden;" onload="javascript:StartupLabelMe();">
+<body id="body" style="visibility:hidden;overflow: visible;" onload="javascript:StartupLabelMe();">
 
   <!-- Mechanical Turk instructions and submit button -->
   <div id="mt_submit_form"></div>
@@ -121,16 +121,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     </div>
 
     <div id="label_buttons_contrast">
-      <button id="toggletmq" class="labelBtn" type="button" title="tmq->tmq_wind_850->tmq_wind_bot">
+      <button id="toggletmq" class="labelBtn" type="button" title="Water Vapor(TMQ) -> TMQ + Wind at 850mbar -> TMQ + Wind at 101mbar">
         <img src="Icons/b1.png" height="30" />
       </button>
-      <button id="toggleivt" class="labelBtn" type="button" title="ivt -> vor_psl_ivt">
+      <button id="toggleivt" class="labelBtn" type="button" title="Integrated Vapor Transport(IVT) -> IVT + Vorticity + Sea Level Pressure(PSL)">
         <img src="Icons/b2.png" height="30" />
       </button>
-      <button id="togglevor" class="labelBtn" type="button" title="vorticity">
+      <button id="togglevor" class="labelBtn" type="button" title="Vorticity">
         <img src="Icons/b3.png" height="30" />
       </button>
-      <button id="togglepsl" class="labelBtn" type="button" title="vor_psl">
+      <button id="togglepsl" class="labelBtn" type="button" title="Vorticity + Sea Level Pressure(PSL)">
         <img src="Icons/b4.png" height="30" />
       </button>
     </div>
@@ -154,7 +154,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     </div>
   </div>
   
-  <div class="img_color_bar" overflow="scroll">
+  <div class="img_color_bar" height="600px">
   <!-- IMAGE CANVAS -->
   <div class="image_canvas" id="main_section">
     <div id="loading">Loading image...</div>
@@ -198,7 +198,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   </div>
 
     <!-- color bar -->
-  <img id="my_color_bar" src="Icons/PSL_vor.png" width="93%" />
+  <img id="my_color_bar" src="Icons/PSL_vor.png" style="left:105px; position: absolute;" width="52%" />
 
   </div>
   

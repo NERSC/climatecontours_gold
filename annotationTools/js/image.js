@@ -107,7 +107,7 @@ function image(id) {
         else this.im.style.display = '';
 
         //reset color bar's position
-        $("#my_color_bar").css({top: this.height_curr + 70, left: 30, position:'absolute'});
+        $("#my_color_bar").css({top: this.height_curr + 80});
     };
     
     
@@ -248,7 +248,7 @@ function image(id) {
         $("#main_media").width(this.curr_frame_width).height(this.curr_frame_height);
         
         //reset color bar's position
-        $("#my_color_bar").css({top: this.curr_frame_height + 70, left: 30, position:'absolute'});
+        $("#my_color_bar").css({top: this.curr_frame_height + 80});
     };
     
     

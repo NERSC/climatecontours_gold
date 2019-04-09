@@ -104,7 +104,7 @@ function LoadNewMedia(){
       // Get the image:
       main_media.GetNewImage(main_media_onload_helper);
       var c = document.getElementById('imcanvas');
-      $("#my_color_bar").css({top: c.height + 70, left: 30, position:'absolute'});
+      $("#my_color_bar").css({top: c.height + 80});
 }
 /** This function gets called if the annotation has been successfully loaded.
   * @param {string} xml - the xml regarding the current file
