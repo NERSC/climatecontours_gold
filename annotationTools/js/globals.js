@@ -106,8 +106,8 @@ if (localStorage.getItem("session_id") == null) {
 var img_counter = 0;
 
 // Toggle counter
-var toggle_counters = [0, 0];
-var toggle_list = ["tmq", "tmq_wind_850", "tmq_wind_bot", "ivt", "vor_psl_ivt", "vorticity", "vor_psl"];
+// var toggle_counters = [0, 0];
+var toggle_list = ["tmq_wind_bot", "tmq", "tmq_wind_850", "ivt", "vor_psl_ivt", "vorticity", "vor_psl"];
 
 // Mechanical Turk variables:
 var LMbaseurl = 'http://' + window.location.host + window.location.pathname;

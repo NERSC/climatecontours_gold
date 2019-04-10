@@ -68,39 +68,43 @@ function WriteLogMsg(msg) {
 }
 function Toggle(num) {
   if (num == 1) {
-    toggle_counters[0] += 1;
+    // toggle_counters[0] += 1;
     let len = 3;
-    let idx = (((toggle_counters[0]-1) % len) + len) % len;
+    let curr_dir = main_media.GetFileInfo().GetDirName();
+    let curr_idx = toggle_list.indexOf(curr_dir);
+    let idx = (((curr_idx + 1) % len) + len) % len;
     main_media.GetFileInfo().dir_name = toggle_list[idx];
     if (idx == 0) {
       document.getElementById('my_color_bar').src = "Icons/tmq.png";
     }
     else if (idx == 1) {
-      document.getElementById('my_color_bar').src = "Icons/tmq_wind850.png";
+      document.getElementById('my_color_bar').src = "Icons/tmq_wind_850.png";
     }
     else {
-      document.getElementById('my_color_bar').src = "Icons/tmq_wind101.png";
+      document.getElementById('my_color_bar').src = "Icons/tmq_wind_bot.png";
     }
   }
   else if (num == 2) {
-    toggle_counters[1] += 1;
+    // toggle_counters[1] += 1;
     let len = 2;
-    let idx = (((toggle_counters[1]-1) % len) + len) % len + 3;
+    let curr_dir = main_media.GetFileInfo().GetDirName();
+    let curr_idx = toggle_list.indexOf(curr_dir);
+    let idx = ((((curr_idx-3) + 1) % len) + len) % len + 3;
     main_media.GetFileInfo().dir_name = toggle_list[idx];
     if (idx == 3) {
       document.getElementById('my_color_bar').src = "Icons/ivt.png";
     }
     else if (idx == 4) {
-      document.getElementById('my_color_bar').src = "Icons/PSL_vor_ivt.png";
+      document.getElementById('my_color_bar').src = "Icons/vor_psl_ivt.png";
     }
   }
   else if (num == 3) {
     main_media.GetFileInfo().dir_name = toggle_list[5];
-    document.getElementById('my_color_bar').src = "Icons/vor.png";
+    document.getElementById('my_color_bar').src = "Icons/vorticity.png";
   }
   else { // if (num == 4)
     main_media.GetFileInfo().dir_name = toggle_list[6];
-    document.getElementById('my_color_bar').src = "Icons/PSL_vor.png";
+    document.getElementById('my_color_bar').src = "Icons/vor_psl.png";
   }
   ToggleChannel();
 }
