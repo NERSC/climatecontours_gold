@@ -108,6 +108,8 @@ function image(id) {
 
         //reset color bar's position
         $("#my_color_bar").css({top: this.height_curr + 80});
+        document.getElementById('my_color_bar').src = "Icons/" + main_media.GetFileInfo().GetDirName() + ".png";
+
     };
     
     
