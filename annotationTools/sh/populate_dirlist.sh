@@ -54,8 +54,8 @@ containsElement () {
   echo 1
 }
 
-# below setting only generates labels for ivt channel
-toggle_arr=("labels_0" "labels_1" "tmq_wind_bot" "tmq" "tmq_wind_850" "vor_psl_ivt" "vorticity" "vor_psl")
+# below setting only generates labels for the TMQ channel
+toggle_arr=("tmq")
 
 
 # Populate dirlist:
@@ -67,7 +67,7 @@ find $ImageDir | sort -R | while read i; do
 
         contains=$(containsElement "$dname" "${toggle_arr[@]}");
         echo $contains
-		if [[ $contains -ne 0 ]]; then
+		if [[ $contains -eq 0 ]]; then
 
             echo "$dname,$iname";
             echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
