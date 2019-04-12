@@ -55,7 +55,7 @@ containsElement () {
 }
 
 # below setting only generates labels for ivt channel
-toggle_arr=("labels_0" "labels_1" "tmq" "tmq_wind" "vor_ps" "vor_ps_wind" "vorticity")
+toggle_arr=("labels_0" "labels_1" "tmq_wind_bot" "tmq" "tmq_wind_850" "vor_psl_ivt" "vorticity" "vor_psl")
 
 
 # Populate dirlist:
