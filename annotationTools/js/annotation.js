@@ -126,7 +126,20 @@ function annotation(anno_id) {
             }
         }
     };
-    
+
+    /**
+     * @returns {string|*|Array} event type, either 'tc' or 'ar'
+     */
+    this.GetEventType = function () {
+        return LMgetObjectField(LM_xml, this.anno_id, 'name').substring(0, 2);
+    };
+
+    /**
+     * @returns {string|*|Array} Confidence value corresponding to 'Low', 'Medium', or 'High'
+     */
+    this.GetConfidence = function () {
+        return LMgetObjectField(LM_xml, this.anno_id, 'confidence');
+    };
     
     // Set attribute of drawn polygon.
     this.SetAttribute = function(field,value) {

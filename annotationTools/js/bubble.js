@@ -208,21 +208,11 @@ function GetPopupFormDraw(scribble_form) {
   if (replace_delete) {
     html_str += HTMLreplaceDelete();
   } else {
-    html_str += HTMLdropdown();
+    html_str += HTMLdropdown('tc');
   }
   html_str += "<b>Select confidence</b><br />";
-  html_str += confidence();
+  html_str += confidence('Low');
 
-  /*if(use_attributes) {
-    html_str += HTMLoccludedBox("");
-    html_str += "<b>Enter attributes</b><br />";
-    html_str += HTMLattributesBox("");
-  }
-  if(use_parts) {
-    html_str += HTMLpartsBox("");
-  }*/
-  //html_str += "<br />";
-  
   // Done button:
   html_str += '<input type="button" value="Done" title="Press this button after you have provided all the information you want about the object." onclick="main_handler.SubmitQuery();" tabindex="0" />';
   
@@ -253,25 +243,12 @@ function GetPopupFormEdit(anno) {
   if (LMgetObjectField(LM_xml, anno.anno_id, 'username') == 'pregenerated') {
     html_str += HTMLpg_dropdown(obj_name);
   } else {
-    html_str += HTMLdropdown();
+    html_str += HTMLdropdown(anno.GetEventType());
   }
 
   html_str += "<b>Select confidence</b><br />";
-  html_str += confidence();
-  //html_str += HTMLobjectBox(obj_name);
+  html_str += confidence(anno.GetConfidence());
 
-  /*if(use_attributes) {
-    html_str += HTMLoccludedBox(occluded);
-    html_str += "<b>Enter attributes</b><br />";
-    html_str += HTMLattributesBox(attributes);
-  }
-
-  if(use_parts) {
-    html_str += HTMLpartsBox(parts);
-  }*/
-  
-  //html_str += "<br />";
-  
   // Done button:
   if (video_mode) html_str += '<input type="button" value="Done" title="Press this button when you are done editing." onclick="main_media.SubmitEditObject();" tabindex="0" />';
   
@@ -302,12 +279,28 @@ function GetPopupFormEdit(anno) {
 // ****************************
 // Simple building blocks:
 // ****************************
-function confidence() {
-    var html_str="";
-    html_str += '<select name="confidence" id="confidence">';
-    html_str += '<option value="Low"> Low </option>';
-    html_str += '<option value="Medium"> Medium </option>';
-    html_str += '<option value="High"> High </option>';
+
+/**
+ *
+ * @param selectedConfidence: this default confidence value to be selected in the dropdown.
+ * @returns {string} String corresponding to confidence dropdown component.
+ */
+function confidence(selectedConfidence) {
+    let options = ["Low", "Medium", "High"];
+    let html_str = '<select name="confidence" id="confidence">';
+
+    for (let i = 0; i < options.length; i++) {
+        html_str += '<option value=';
+        html_str += ('"' + options[i] + '"');
+        // check here to set the correct default value
+        if (selectedConfidence == options[i]) {
+            html_str += ' selected="selected"';
+        }
+        html_str += '>';
+        html_str += options[i];
+        html_str += '</option>'
+    }
+
     html_str += '</select>';
     html_str += '<br />';
 
@@ -325,12 +318,28 @@ function HTMLpg_dropdown(objName) {
 
 }
 
-function HTMLdropdown() {
-    var html_str="";
-    html_str += '<select name="dropDown" id="objSelect">';
-    html_str += '<option value="tc"> Tropical Cyclone (TC) </option>';
-    html_str += '<option value="ar"> Atmospheric River (AR) </option>';
-    html_str += '</select>'
+/**
+ *
+ * @param selectedValue: the default event type to be selected in the dropdown.
+ * @returns {string} String corresponding to the event type dropdown.
+ */
+function HTMLdropdown(selectedValue) {
+    let options = ["tc", "ar"];
+    let display_options = ["Tropical Cyclone (TC)", "Atmospheric River (AR)"];
+    let html_str = '<select name="dropDown" id="objSelect">';
+
+    for (let i = 0; i < options.length; i++) {
+        html_str += '<option value=';
+        html_str += '"' + options[i] + '"';
+        if (selectedValue == options[i]) {
+            html_str += ' selected="selected"';
+        }
+        html_str += '>';
+        html_str += display_options[i];
+        html_str += '</option>';
+    }
+
+    html_str += '</select>';
     html_str += '<br />';
 
     return html_str;
