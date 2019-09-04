@@ -320,17 +320,6 @@ function InitializeAnnotationTools(tag_button, tag_canvas){
     html_str += '</div>';
 
     if (!video_mode){
-      html_str += '<div id= "segmDiv" class="annotatemenu">Mask<br></br>Tool \
-        <button id="ScribbleObj" class="labelBtnDraw" type="button" title="Use the red pencil to mark areas inside the object you want to segment" onclick="scribble_canvas.setCurrentDraw(OBJECT_DRAWING)" > \
-        <img src="Icons/object.png" width="28" height="38" /></button> \
-        <button id="ScribbleBg" class="labelBtnDraw" type="button" title="Use the blue pencil to mark areas outside the object" onclick="scribble_canvas.setCurrentDraw(BG_DRAWING)" > \
-        <img src="Icons/background.png" width="28" height="38" /></button> \
-        <button id="ScribbleRubber" class="labelBtnDraw" type="button" title="ScribbleRubber" onclick="scribble_canvas.setCurrentDraw(RUBBER_DRAWING)" > \
-        <img src="Icons/erase.png" width="28" height="38" /> \
-        </button><input type="button" class="segbut"  id="donebtn" value="Done" title="Press this button after you are done with the scribbling." onclick="scribble_canvas.segmentImage(1)"/> \
-        <p> </p><div id="loadspinner" style="display: none;"><img src="Icons/segment_loader.gif"/> </div></div>';
-     
-
       var html_str2 = '<button xmlns="http://www.w3.org/1999/xhtml" id="img_url" class="labelBtn" type="button" title="Download Pack" onclick="javascript:GetPackFile();"> \
           <img src="Icons/download_all.png" height="30" /> \
           </button>';
