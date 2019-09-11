@@ -140,7 +140,7 @@ function RenderObjectList() {
   html_str += '</ol><p><br/></p>';
 
   //TODO: add a list of link to other image
-  html_str += '<p style="font-size:10px;line-height:100%"><a id="ivt" href="javascript:GoesToChannels('+1+');">Integrated Vapor Transfer</a><br/><br/>';
+  html_str += '<p style="font-size:10px;line-height:100%"><b>Channels:</b><br/><br/><a id="ivt" href="javascript:GoesToChannels('+1+');">Integrated Vapor Transfer</a><br/><br/>';
   html_str += '<a id="vorticity" href="javascript:GoesToChannels('+2+');">Vorticity</a><br/><br/>';
   html_str += '<a id="iwv" href="javascript:GoesToChannels('+3+');">Integrated Water Vapor</a><br/><br/>';
   html_str += '<a id="iwv850" href="javascript:GoesToChannels('+4+');">Integrated Water Vapor &amp; Wind at 850mbar</a><br/><br/>';
