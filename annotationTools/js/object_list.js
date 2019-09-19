@@ -31,6 +31,12 @@ function RenderObjectList() {
   // Get parts tree
   var tree = getPartsTree();
   
+  // Show the image date to indicate season
+  var img_name = main_media.GetFileInfo().im_name;
+  var regex = /[0-9]{4}.?[0-9]{1,2}.?[0-9]{1,2}/g;
+  var date_found = img_name.match(regex);
+  html_str += '<b>Date: '+date_found[0]+ '</b><br/><br/>';
+
   // Create DIV
   if (showImgName) {html_str += '<p><b>Image name: '+ imgName +'</b></p>';}
   html_str += '<b>Polygons in this image ('+ NundeletedPolygons +')</b>';
@@ -73,50 +79,50 @@ function RenderObjectList() {
       html_str += '<div class="objectListLink" id="LinkAnchor' + ii + '" style="z-index:1; margin-left:'+ (level*1.5) +'em" ';
       
       if (use_parts) {
-	// define drag events (but only if the tool is allowed to use parts)
-	html_str += 'draggable="true" ondragstart="drag(event, '+ii+')" '+
-	  'ondragend="dragend(event, '+ii+')" '+
-	  'ondrop="drop(event, '+ii+')" '+
-	  'ondragenter="return dragEnter(event)" '+
-	  'ondragover="return dragOver(event)">';
+  // define drag events (but only if the tool is allowed to use parts)
+  html_str += 'draggable="true" ondragstart="drag(event, '+ii+')" '+
+    'ondragend="dragend(event, '+ii+')" '+
+    'ondrop="drop(event, '+ii+')" '+
+    'ondragenter="return dragEnter(event)" '+
+    'ondragover="return dragOver(event)">';
       }
       
       // change the icon for parts
       if(level==0) {
-	// if it is not a part, show square
-	html_str += '<li>';
+  // if it is not a part, show square
+  html_str += '<li>';
       }
       else {
-	// if it is a part, use part style
-	html_str += '<li class="children_tree">';
+  // if it is a part, use part style
+  html_str += '<li class="children_tree">';
       }
       
       // show object name:
       html_str += '<a class="objectListLink"  id="Link' + ii + '" '+
-	'href="javascript:main_handler.AnnotationLinkClick('+ii+');" '+
-	'onmouseover="main_handler.AnnotationLinkMouseOver('+ii+');" ' +
-	'onmouseout="main_handler.AnnotationLinkMouseOut();" ';
+  'href="javascript:main_handler.AnnotationLinkClick('+ii+');" '+
+  'onmouseover="main_handler.AnnotationLinkMouseOver('+ii+');" ' +
+  'onmouseout="main_handler.AnnotationLinkMouseOut();" ';
       
       if (use_parts) {
-	html_str += 'ondrop="drop(event, '+ii+')" '+
-	  'ondragend="dragend(event, '+ii+')" '+
-	  'ondragenter="return dragEnter(event)" '+
-	  'ondragover="return dragOver(event)"';
+  html_str += 'ondrop="drop(event, '+ii+')" '+
+    'ondragend="dragend(event, '+ii+')" '+
+    'ondragenter="return dragEnter(event)" '+
+    'ondragover="return dragOver(event)"';
       }
       
       if(isDeleted) {
-	html_str += ' style="color:#888888"><b>';
+  html_str += ' style="color:#888888"><b>';
       }
       else {
-	html_str += '>';
+  html_str += '>';
       }
 
       var obj_name = LMgetObjectField(LM_xml,ii,'name');
       if(obj_name.length==0 && !draw_anno) {
-	html_str += '<i>[ Please enter name ]</i>';
+  html_str += '<i>[ Please enter name ]</i>';
       }
       else {
-	html_str += obj_name;
+  html_str += obj_name;
       }
       
       if(isDeleted) html_str += '</b>';
@@ -124,14 +130,24 @@ function RenderObjectList() {
 
       var attributes = LMgetObjectField(LM_xml,ii,'attributes');
       if(attributes.length>0) {
-	html_str += ' (' + attributes +')';
+  html_str += ' (' + attributes +')';
       }
       
       html_str += '</li></div>';
     }
   }
   
-  html_str += '</ol><p><br/></p></div>';
+  html_str += '</ol><p><br/></p>';
+
+  //TODO: add a list of link to other image
+  html_str += '<p style="font-size:10px;line-height:100%"><b>Channels:</b><br/><br/><a id="ivt" href="javascript:GoesToChannels('+1+');">Integrated Vapor Transfer</a><br/><br/>';
+  html_str += '<a id="vorticity" href="javascript:GoesToChannels('+2+');">Vorticity</a><br/><br/>';
+  html_str += '<a id="iwv" href="javascript:GoesToChannels('+3+');">Integrated Water Vapor</a><br/><br/>';
+  html_str += '<a id="iwv850" href="javascript:GoesToChannels('+4+');">Integrated Water Vapor &amp; Wind at 850mbar</a><br/><br/>';
+  html_str += '<a id="iwv101" href="javascript:GoesToChannels('+5+');">Integrated Water Vapor &amp; Surface Level Wind</a><br/><br/>';
+  html_str += '<a id="vorticity_psl" href="javascript:GoesToChannels('+6+');">Vorticity &amp; Sea Level Pressure</a><br/><br/>';
+  html_str += '<a id="vorticity_psl_ivt" href="javascript:GoesToChannels('+7+');">Vorticity &amp; Sea Level Pressure &amp; IVT</a><br/><br/>';
+  html_str += '</p></div>';
   
   // Attach annotation list to 'anno_anchor' DIV element:
   $('#anno_anchor').append(html_str);
@@ -139,6 +155,42 @@ function RenderObjectList() {
   $('#anno_list').scrollTop(scrollPos);
 }
 
+function GoesToChannels(i) {
+  if (i == 1) {
+    main_media.GetFileInfo().dir_name = toggle_list[3];
+    document.getElementById('my_color_bar').src = "Icons/ivt.png";
+  }
+  if (i == 2) {
+    main_media.GetFileInfo().dir_name = toggle_list[5];
+    document.getElementById('my_color_bar').src = "Icons/vorticity.png";
+  }
+  if (i == 3) {
+    main_media.GetFileInfo().dir_name = toggle_list[1];
+    document.getElementById('my_color_bar').src = "Icons/tmq.png";
+  }
+  if (i == 4) {
+    main_media.GetFileInfo().dir_name = toggle_list[2];
+    document.getElementById('my_color_bar').src = "Icons/tmq_wind_850.png";
+  }
+  if (i == 5) {
+    main_media.GetFileInfo().dir_name = toggle_list[0];
+    document.getElementById('my_color_bar').src = "Icons/tmq_wind_bot.png";
+  }
+  if (i == 6) {
+    main_media.GetFileInfo().dir_name = toggle_list[6];
+    document.getElementById('my_color_bar').src = "Icons/vor_psl.png";
+  }
+  if (i == 7) {
+    main_media.GetFileInfo().dir_name = toggle_list[4];
+    document.getElementById('my_color_bar').src = "Icons/vor_psl_ivt.png";
+  }
+  function toggle_onload_helper() {
+    // Set the image dimensions:
+    main_media.SetImageDimensions();
+    main_media.Zoom('fitted');
+    };
+  main_media.GetNewImage(toggle_onload_helper);
+}
 
 function RemoveObjectList() {
   $('#anno_list').remove();
