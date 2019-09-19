@@ -310,7 +310,10 @@ function InitializeAnnotationTools(tag_button, tag_canvas){
     var html_str = '<div id= "polygonDiv" class="annotatemenu">Polygon<br></br>Tool \
         <button id="polygon" class="labelBtnDraw" type="button" title="Start Polygon" onclick="SetPolygonDrawingMode(false)" > \
         <img id="polygonModeImg" src="Icons/polygon.png"  width="28" height="38" /> \
-        </button>';
+        </button>  \
+        <button id="erase" class="labelBtnDraw" type="button" title="Delete last segment" onclick="main_handler.EraseSegment()" > \
+        <img src="Icons/erase.png"  width="28" height="38" /> \
+        </button> ';
     html_str += '</div>';
 
     if (!video_mode){
