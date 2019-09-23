@@ -35,7 +35,7 @@ function RenderObjectList() {
   var img_name = main_media.GetFileInfo().im_name;
   var regex = /[0-9]{4}.?[0-9]{1,2}.?[0-9]{1,2}/g;
   var date_found = img_name.match(regex);
-  html_str += '<b>Date: '+date_found[0]+ '</b><br/><br/>';
+  html_str += '<b style="font-size:18px;line-height:120%">Date: '+date_found[0]+ '</b><br/><br/>';
 
   // Create DIV
   if (showImgName) {html_str += '<p><b>Image name: '+ imgName +'</b></p>';}
@@ -140,13 +140,13 @@ function RenderObjectList() {
   html_str += '</ol><p><br/></p>';
 
   //TODO: add a list of link to other image
-  html_str += '<p style="font-size:10px;line-height:100%"><b>Channels:</b><br/><br/><a id="ivt" href="javascript:GoesToChannels('+1+');">Integrated Vapor Transfer</a><br/><br/>';
-  html_str += '<a id="vorticity" href="javascript:GoesToChannels('+2+');">Vorticity</a><br/><br/>';
-  html_str += '<a id="iwv" href="javascript:GoesToChannels('+3+');">Integrated Water Vapor</a><br/><br/>';
-  html_str += '<a id="iwv850" href="javascript:GoesToChannels('+4+');">Integrated Water Vapor &amp; Wind at 850mbar</a><br/><br/>';
-  html_str += '<a id="iwv101" href="javascript:GoesToChannels('+5+');">Integrated Water Vapor &amp; Surface Level Wind</a><br/><br/>';
-  html_str += '<a id="vorticity_psl" href="javascript:GoesToChannels('+6+');">Vorticity &amp; Sea Level Pressure</a><br/><br/>';
-  html_str += '<a id="vorticity_psl_ivt" href="javascript:GoesToChannels('+7+');">Vorticity &amp; Sea Level Pressure &amp; IVT</a><br/><br/>';
+  html_str += '<p style="font-size:18px;line-height:100%"><b>Channels:</b><br/><br/><a id="ivt" href="javascript:GoesToChannels('+1+');">Integrated Vapor Transfer</a><br/><br/>';
+  html_str += '<a class="channels_list" id="vorticity" href="javascript:GoesToChannels('+2+');">Vorticity</a><br/><br/>';
+  html_str += '<a class="channels_list" id="iwv" href="javascript:GoesToChannels('+3+');">Integrated Water Vapor</a><br/><br/>';
+  html_str += '<a class="channels_list" id="iwv850" href="javascript:GoesToChannels('+4+');">Integrated Water Vapor &amp; Wind at 850mbar</a><br/><br/>';
+  html_str += '<a class="channels_list" id="iwv101" href="javascript:GoesToChannels('+5+');">Integrated Water Vapor &amp; Wind at Surface Level</a><br/><br/>';
+  html_str += '<a class="channels_list" id="vorticity_psl" href="javascript:GoesToChannels('+6+');">Vorticity &amp; Sea Level Pressure</a><br/><br/>';
+  html_str += '<a class="channels_list" id="vorticity_psl_ivt" href="javascript:GoesToChannels('+7+');">Vorticity &amp; Sea Level Pressure &amp; IVT</a><br/><br/>';
   html_str += '</p></div>';
   
   // Attach annotation list to 'anno_anchor' DIV element:
