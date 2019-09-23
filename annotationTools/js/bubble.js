@@ -208,10 +208,10 @@ function GetPopupFormDraw(scribble_form) {
   if (replace_delete) {
     html_str += HTMLreplaceDelete();
   } else {
-    html_str += HTMLdropdown('tc');
+    html_str += HTMLdropdown('ar');
   }
   html_str += "<b>Select confidence</b><br />";
-  html_str += confidence('Low');
+  html_str += confidence('Medium');
 
   // Done button:
   html_str += '<input type="button" value="Done" title="Press this button after you have provided all the information you want about the object." onclick="main_handler.SubmitQuery();" tabindex="0" />';
@@ -337,7 +337,7 @@ function HTMLdropdown(selectedValue) {
         html_str += '>';
         html_str += display_options[i];
         html_str += '</option>';
-    }
+}
 
     html_str += '</select>';
     html_str += '<br />';
