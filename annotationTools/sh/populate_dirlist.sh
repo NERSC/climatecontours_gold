@@ -67,7 +67,7 @@ find $ImageDir | sort -R | while read i; do
 
         contains=$(containsElement "$dname" "${toggle_arr[@]}");
         echo $contains
-		if [[ $contains -eq 0 ]]; then
+		if [[ $contains -ne 0 ]]; then
 
             echo "$dname,$iname";
             echo "$dname,$iname" >> $HOMEDIRLIST/$dirlist;
