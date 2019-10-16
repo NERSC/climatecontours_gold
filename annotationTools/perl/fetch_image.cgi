@@ -58,7 +58,7 @@ if($mode eq "i") {
     
     my $line = int(rand($numlines))+1;
 
-    for(my $i=1; $i < $counter % ($numlines) + 1; $i++) {
+    for(my $i=1; $i < $line; $i++) {
 	my $garbage = readline(FP);
     }
     
