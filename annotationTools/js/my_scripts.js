@@ -143,6 +143,10 @@ function ShowNextImage() {
     return;
   }
   //$('#main_media').remove();
+  var msg = "I have identified all Atmospheric Rivers and Tropical Cyclones in this image"
+  if (!confirm(msg)) {
+    return;
+  }
 
   // Remove the object list:
   RemoveObjectList();
