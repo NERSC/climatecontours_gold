@@ -141,12 +141,10 @@ function RenderObjectList() {
 
   //TODO: add a list of link to other image
   html_str += '<p style="font-size:18px;line-height:100%"><b>Channels:</b><br/><br/><a id="ivt" href="javascript:GoesToChannels('+1+');">Integrated Vapor Transport</a><br/><br/>';
-  html_str += '<a class="channels_list" id="vorticity" href="javascript:GoesToChannels('+2+');">Vorticity</a><br/><br/>';
-  html_str += '<a class="channels_list" id="iwv" href="javascript:GoesToChannels('+3+');">Integrated Water Vapor</a><br/><br/>';
-  html_str += '<a class="channels_list" id="iwv850" href="javascript:GoesToChannels('+4+');">Integrated Water Vapor &amp; Wind at 850mbar</a><br/><br/>';
-  html_str += '<a class="channels_list" id="iwv101" href="javascript:GoesToChannels('+5+');">Integrated Water Vapor &amp; Wind at Surface Level</a><br/><br/>';
-  html_str += '<a class="channels_list" id="vorticity_psl" href="javascript:GoesToChannels('+6+');">Vorticity &amp; Sea Level Pressure</a><br/><br/>';
-  html_str += '<a class="channels_list" id="vorticity_psl_ivt" href="javascript:GoesToChannels('+7+');">Vorticity &amp; Sea Level Pressure &amp; IVT</a><br/><br/>';
+  html_str += '<a class="channels_list" id="tmq" href="javascript:GoesToChannels('+2+');">Integrated Water Vapor</a><br/><br/>';
+  html_str += '<a class="channels_list" id="tmq_wind_850" href="javascript:GoesToChannels('+3+');">IWV &amp; Wind at 850mbar</a><br/><br/>';
+  html_str += '<a class="channels_list" id="psl" href="javascript:GoesToChannels('+4+');">Pressure at Sea Level</a><br/><br/>';
+  html_str += '<a class="channels_list" id="psl_ivt" href="javascript:GoesToChannels('+5+');">IVT &amp; PSL</a><br/><br/>';
   html_str += '</p></div>';
   
   // Attach annotation list to 'anno_anchor' DIV element:
@@ -157,32 +155,24 @@ function RenderObjectList() {
 
 function GoesToChannels(i) {
   if (i == 1) {
-    main_media.GetFileInfo().dir_name = toggle_list[3];
+    main_media.GetFileInfo().dir_name = toggle_list[2];
     document.getElementById('my_color_bar').src = "Icons/ivt.png";
   }
   if (i == 2) {
-    main_media.GetFileInfo().dir_name = toggle_list[5];
-    document.getElementById('my_color_bar').src = "Icons/vorticity.png";
+    main_media.GetFileInfo().dir_name = toggle_list[0];
+    document.getElementById('my_color_bar').src = "Icons/tmq.png";
   }
   if (i == 3) {
     main_media.GetFileInfo().dir_name = toggle_list[1];
-    document.getElementById('my_color_bar').src = "Icons/tmq.png";
-  }
-  if (i == 4) {
-    main_media.GetFileInfo().dir_name = toggle_list[2];
     document.getElementById('my_color_bar').src = "Icons/tmq_wind_850.png";
   }
+  if (i == 4) {
+    main_media.GetFileInfo().dir_name = toggle_list[3];
+    document.getElementById('my_color_bar').src = "Icons/psl.png";
+  }
   if (i == 5) {
-    main_media.GetFileInfo().dir_name = toggle_list[0];
-    document.getElementById('my_color_bar').src = "Icons/tmq_wind_bot.png";
-  }
-  if (i == 6) {
-    main_media.GetFileInfo().dir_name = toggle_list[6];
-    document.getElementById('my_color_bar').src = "Icons/vor_psl.png";
-  }
-  if (i == 7) {
     main_media.GetFileInfo().dir_name = toggle_list[4];
-    document.getElementById('my_color_bar').src = "Icons/vor_psl_ivt.png";
+    document.getElementById('my_color_bar').src = "Icons/psl_ivt.png";
   }
   function toggle_onload_helper() {
     // Set the image dimensions:
